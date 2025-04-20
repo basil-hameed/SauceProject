@@ -22,10 +22,24 @@ class BasePage:
         except (TimeoutException, ElementNotVisibleException, NoSuchElementException) as error:
             print("ERROR: ", error)
 
+    def find_elements(self, locator):
+        try:
+            web_elements = WebDriverWait(self.driver, self.timeout).until(EC.presence_of_all_elements_located(locator))
+            return web_elements
+        except (TimeoutException, ElementNotVisibleException, NoSuchElementException) as error:
+            print("ERROR: ", error)
+
     def is_visible(self, locator):
         try:
             web_element = WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_element_located(locator))
             return web_element.is_displayed()
+        except (TimeoutException, ElementNotVisibleException, NoSuchElementException) as error:
+            print("ERROR: ", error)
+
+    def is_clickable(self, locator):
+        try:
+            web_element = WebDriverWait(self.driver, self.timeout).until(EC.element_to_be_clickable(locator))
+            return web_element
         except (TimeoutException, ElementNotVisibleException, NoSuchElementException) as error:
             print("ERROR: ", error)
 
