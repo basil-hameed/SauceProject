@@ -1,11 +1,11 @@
-
+import pytest
 from PageObjects.login_page import LoginPage
 from PageObjects.base_page import BasePage
 from TestData.data import Data
-from TestLocator.locators import Locators
 from Configuration.conftest import driver
 
 # TC-001
+@pytest.mark.parametrize("driver", ["chrome", "firefox"], indirect=True)
 def test_title(driver):
     driver.get(Data.url)
     base_page = BasePage(driver)
@@ -15,6 +15,7 @@ def test_title(driver):
     print("SUCCESS: Title is valid")
 
 # TC-002
+@pytest.mark.parametrize("driver", ["chrome", "firefox"], indirect=True)
 def test_url(driver):
     driver.get(Data.url)
     base_page = BasePage(driver)
@@ -25,6 +26,7 @@ def test_url(driver):
 
 
 # TC-003
+@pytest.mark.parametrize("driver", ["chrome", "firefox"], indirect=True)
 def test_username_input(driver):
     driver.get(Data.url)
     login_page = LoginPage(driver)
@@ -36,6 +38,7 @@ def test_username_input(driver):
 
 
 # TC-004
+@pytest.mark.parametrize("driver", ["chrome", "firefox"], indirect=True)
 def test_password_input(driver):
     driver.get(Data.url)
     login_page = LoginPage(driver)
@@ -47,6 +50,7 @@ def test_password_input(driver):
 
 
 # TC-005
+@pytest.mark.parametrize("driver", ["chrome", "firefox"], indirect=True)
 def test_valid_login(driver):
     driver.get(Data.url)
     login_page = LoginPage(driver)

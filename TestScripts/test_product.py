@@ -1,11 +1,11 @@
+import pytest
 from PageObjects.login_page import LoginPage
-from PageObjects.base_page import BasePage
 from PageObjects.product_page import ProductPage
 from TestData.data import Data
-from TestLocator.locators import Locators
 from Configuration.conftest import driver
 
 # TC-006
+@pytest.mark.parametrize("driver", ["chrome", "firefox"], indirect=True)
 def test_product_cards_visibility(driver):
     driver.get(Data.url)
     login_page = LoginPage(driver)
@@ -17,6 +17,8 @@ def test_product_cards_visibility(driver):
     product_cards = product_page.get_all_product_cards()
     assert product_cards, "No product cards found"
 
+# TC-007
+@pytest.mark.parametrize("driver", ["chrome", "firefox"], indirect=True)
 def test_product_cards_count(driver):
     driver.get(Data.url)
     login_page = LoginPage(driver)
@@ -30,7 +32,8 @@ def test_product_cards_count(driver):
     assert total_product_cards == 6
     print("All product cards visible!")
 
-
+# TC-008
+@pytest.mark.parametrize("driver", ["chrome", "firefox"], indirect=True)
 def test_products_low_to_high(driver):
     driver.get(Data.url)
     login_page = LoginPage(driver)
@@ -47,6 +50,8 @@ def test_products_low_to_high(driver):
     assert prices == sorted_prices, "Products are not sorted!"
     print("SUCCESS: Products are sorted!")
 
+# TC-009
+@pytest.mark.parametrize("driver", ["chrome", "firefox"], indirect=True)
 def test_add_to_cart(driver):
     driver.get(Data.url)
     login_page = LoginPage(driver)
@@ -62,6 +67,8 @@ def test_add_to_cart(driver):
     assert cart_count == 1
     print("SUCCESS: Product added to the cart")
 
+# TC-010
+@pytest.mark.parametrize("driver", ["chrome", "firefox"], indirect=True)
 def test_remove_from_cart(driver):
     driver.get(Data.url)
     login_page = LoginPage(driver)
