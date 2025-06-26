@@ -20,11 +20,11 @@ from webdriver_manager.firefox import GeckoDriverManager
 # updated driver with cross browser testing
 def get_driver(browser):
     if browser.lower() == "chrome":
-        service = ChromeService(ChromeDriverManager().install())
-        driver = webdriver.Chrome(service=service)
+        chrome_service = ChromeService(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=chrome_service)
     elif browser.lower() == "firefox":
-        service = FirefoxService(GeckoDriverManager().install())
-        driver = webdriver.Firefox(service=service)
+        firefox_service = FirefoxService(GeckoDriverManager().install())
+        driver = webdriver.Firefox(service=firefox_service)
     else:
         raise ValueError(f"Unsupported browser: {browser}")
     
